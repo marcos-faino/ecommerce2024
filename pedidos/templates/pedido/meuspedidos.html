@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Meu Ecommerce - Meus Pedidos {% endblock %}
+
+{% block conteudo %}
+<article data-theme="dark">
+    <table class="striped">
+        <thead>
+        <tr>
+            <th>Pedido Nº</th>
+            <th>itens</th>
+            <th>Total</th>
+            <th>Ver</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in meus_pedidos %}
+        <tr>
+            <td>
+                {{ p.id }}
+            </td>
+            <td>{% for i in p.itens_pedido.all %}
+                    {{ i.produto.nome }}<br>
+                {% endfor %}
+            </td>
+            <td>{{ p.get_total }}</td>
+            <td><a href="{% url 'resumopedido' p.id %}" role="button" class="outline" title="Ver pedido!">
+                🔍
+            </a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Vc ainda não realizou pedidos conosco!</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</article>
+{% endblock %}

@@ -21,12 +21,19 @@
             </li>
             {% if request.user.is_authenticated %}
             <li>
-                {{ request.user.get_full_name }}
-                <a href="{% url 'logoutuser' %}">🔌</a>
+                <details class="dropdown">
+                <summary>
+                    {{ request.user.get_full_name }}
+                </summary>
+                <ul dir="rtl">
+                <li><a href="{% url 'meuspedidos' %}">Meus Pedidos</a></li>
+                <li><a href="{% url 'logoutuser' %}">🔌Sair</a></li>
+                </ul>
+                </details>
             </li>
             {% else %}
-            <li><a href="{% url 'loginuser' %}" role="button"
-                   class="outline">Entrar</a>
+            <li><a class="outline" href="{% url 'loginuser' %}"
+                   role="button">Entrar</a>
             </li>
             {% endif %}
         </ul>
