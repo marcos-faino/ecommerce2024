@@ -10,6 +10,7 @@ class Pedido(models.Model):
     # cep = models.CharField(max_length=10)
     # cidade = models.CharField(max_length=100)
     # telefone = models.CharField(max_length=15)
+    braintree_id = models.CharField(max_length=150, blank=True)
     criado = models.DateTimeField(auto_now_add=True)
     atualizado = models.DateTimeField(auto_now=True)
     pago = models.BooleanField(default=False)
